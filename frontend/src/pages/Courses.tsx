@@ -18,7 +18,7 @@ interface Enrollment {
 }
 
 export const Courses: React.FC = () => {
-  const { user: _user } = useAuth();
+  const { user } = useAuth();
   const [courses, setCourses] = useState<Course[]>([]);
   const [enrollments, setEnrollments] = useState<Enrollment[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,22 +28,25 @@ export const Courses: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [coursesResponse, enrollmentsResponse] = await Promise.all([
-          axios.get('http://localhost:8000/api/courses/'),
-          axios.get('http://localhost:8000/api/courses/my-enrollments')
-        ]);
-        
+        const coursesResponse = await axios.get('http://localhost:8000/api/courses/');
         setCourses(coursesResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch courses:', error);
+      }
+
+      try {
+        const enrollmentsResponse = await axios.get('http://localhost:8000/api/courses/my-enrollments');
         setEnrollments(enrollmentsResponse.data);
       } catch (error) {
-        console.error('Failed to fetch data:', error);
+        // If enrollments fail (e.g., not authenticated), still show courses
+        setEnrollments([]);
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const isEnrolled = (courseId: number) => {
     return enrollments.some(enrollment => enrollment.course_id === courseId);

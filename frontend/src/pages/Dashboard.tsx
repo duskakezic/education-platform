@@ -283,28 +283,6 @@ export const Dashboard: React.FC = () => {
                   </span>
                 </Link>
               )}
-
-              <Link
-                to="/profile"
-                className="relative group bg-white p-6 border border-gray-200 rounded-lg hover:shadow-lg transition-shadow"
-              >
-                <div>
-                  <span className="rounded-lg inline-flex p-3 bg-gray-50 text-gray-700 ring-4 ring-white">
-                    <UserGroupIcon className="h-6 w-6" />
-                  </span>
-                </div>
-                <div className="mt-4">
-                  <h3 className="text-lg font-medium text-gray-900 group-hover:text-gray-600">
-                    Profile Settings
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    Manage your account and preferences.
-                  </p>
-                </div>
-                <span className="absolute top-6 right-6 text-gray-300 group-hover:text-gray-400">
-                  <ArrowRightIcon className="h-6 w-6" />
-                </span>
-              </Link>
             </div>
           </div>
         </div>

@@ -438,3 +438,10 @@ backend/uploads/materials/2bc98460-575b-4e19-afea-4cce3f62d9d7.pdf
 .env.test.local
 .env.production.local
 
+server/uploads/
+server/node_modules/
+server/package-lock.json
+server/package.json
+server/README.md
+server/src/utils/uploads.ts
+server/src/utils/uploads.ts
